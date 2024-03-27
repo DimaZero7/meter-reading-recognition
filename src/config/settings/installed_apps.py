@@ -10,4 +10,6 @@ INSTALLED_APPS = [
     # Third-party apps
     "rangefilter",
     "django_cleanup.apps.CleanupConfig",
+    "drf_yasg",
+    "rest_framework",
 ]

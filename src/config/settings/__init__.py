@@ -8,5 +8,7 @@ settings_include(
     "database.py",
     "base.py",
     "storage.py",
+    "rest.py",
+    "swagger.py",
     optional("local_settings.py"),
 )
