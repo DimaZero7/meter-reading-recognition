@@ -1,0 +1,7 @@
+*.pyc
+.idea
+/media/
+venv
+config.toml
+local_settings.py
+Pipfile.lock
