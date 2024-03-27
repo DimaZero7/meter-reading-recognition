@@ -19,13 +19,9 @@ if DEVELOPMENT != DEVELOPMENT_PROD:
     ]
 
 if DEVELOPMENT == DEVELOPMENT_LOCAL:
-    rest_authentication_classes = REST_FRAMEWORK.get(
-        "DEFAULT_AUTHENTICATION_CLASSES", []
-    )
+    rest_authentication_classes = REST_FRAMEWORK.get("DEFAULT_AUTHENTICATION_CLASSES", [])
 
-    session_authentication = (
-        "rest_framework.authentication.SessionAuthentication"
-    )
+    session_authentication = "rest_framework.authentication.SessionAuthentication"
     basic_authentication = "rest_framework.authentication.BasicAuthentication"
 
     if session_authentication not in rest_authentication_classes:

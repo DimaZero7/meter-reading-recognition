@@ -8,9 +8,7 @@ from services.api.mobile.playlists.serializers import PlaylistSerializer
 
 class DanceCreateSerializer(serializers.Serializer):
     is_active = serializers.BooleanField(default=False)
-    number_of_sessions = serializers.IntegerField(
-        validators=[number_of_sessions_validator]
-    )
+    number_of_sessions = serializers.IntegerField(validators=[number_of_sessions_validator])
     training_time = serializers.ChoiceField(choices=TrainingTime.choices)
     dance_id = serializers.IntegerField()
 

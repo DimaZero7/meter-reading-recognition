@@ -7,17 +7,14 @@ bad_request = openapi.Response(
         type=openapi.TYPE_OBJECT,
         properties={
             api_settings.NON_FIELD_ERRORS_KEY: openapi.Schema(
-                description=(
-                    "List of validation errors not related " "to any field"
-                ),
+                description=("List of validation errors not related " "to any field"),
                 type=openapi.TYPE_ARRAY,
                 items=openapi.Schema(type=openapi.TYPE_STRING),
             ),
         },
         additional_properties=openapi.Schema(
             description=(
-                "A list of error messages for each field "
-                "that triggered a validation error"
+                "A list of error messages for each field " "that triggered a validation error"
             ),
             type=openapi.TYPE_ARRAY,
             items=openapi.Schema(type=openapi.TYPE_STRING),

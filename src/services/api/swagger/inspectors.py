@@ -4,9 +4,7 @@ from drf_yasg.inspectors.field import ChoiceFieldInspector
 
 
 class EnumWithDescriptionFieldInspector(ChoiceFieldInspector):
-    def field_to_swagger_object(
-        self, field, swagger_object_type, use_references, **kwargs
-    ):
+    def field_to_swagger_object(self, field, swagger_object_type, use_references, **kwargs):
         result = super().field_to_swagger_object(
             field, swagger_object_type, use_references, **kwargs
         )
