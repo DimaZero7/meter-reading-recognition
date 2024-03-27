@@ -1,3 +1,5 @@
+from typing import Union
+
 import numpy as np
 
 from apps.number_reading.exceptions import NumberIsoLongException
@@ -52,3 +54,20 @@ def convert_float_to_categorical(number: float) -> np.ndarray:
         categorical[height - 1 - iteration, int(digit)] = 1
 
     return categorical
+
+
+def convert_categorical_to_number(array: np.ndarray) -> Union[int, float]:
+    dot_index = np.argmax(array[0])
+    array = array[1:]
+
+    numbers = list()
+    for row in array:
+        numbers.append(str(np.argmax(row)))
+
+    number_type = int
+    if dot_index > 0:
+        numbers.insert(-dot_index, ".")
+        number_type = float
+
+    numbers = "".join(numbers)
+    return number_type(numbers)
