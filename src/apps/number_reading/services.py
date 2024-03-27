@@ -1,0 +1,54 @@
+import numpy as np
+
+from apps.number_reading.exceptions import NumberIsoLongException
+
+
+def convert_float_to_categorical(number: float) -> np.ndarray:
+    """
+    Function takes a number and returns its categorical representation (a 2-dimensional array of size 11x10),
+    where index column[0] denotes the position of the decimal point from the end, and indices column[1-10] denote the digits of the number.
+
+    Example for the number 2.29:
+    [
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],  # decimal point at 2nd position from the end
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 0
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 2
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],  # corresponds to digit 2
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]   # corresponds to digit 9
+    ]
+    """
+    if number.is_integer():
+        number = int(number)
+
+    height = 11
+    length = 10
+    dot_index = 0
+    categorical = np.zeros(shape=[height, length], dtype=int)
+    number_list = list(str(number))
+
+    if len(number_list) > height:
+        raise NumberIsoLongException()
+
+    if isinstance(number, float):
+        for iteration, digit in enumerate(reversed(number_list)):
+            if digit == ".":
+                dot_index = iteration
+                del number_list[-iteration - 1]
+                break
+
+    categorical[0, dot_index] = 1
+
+    for iteration in range(0, height - 1):
+        digit = 0
+        if iteration < len(number_list):
+            digit = number_list[-iteration - 1]
+        categorical[height - 1 - iteration, int(digit)] = 1
+
+    return categorical
