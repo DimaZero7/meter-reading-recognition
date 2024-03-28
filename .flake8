@@ -6,3 +6,4 @@ exclude =
 max-complexity = 10
 per-file-ignores =
     */config/settings/*:F821 E501
+max-line-length = 100

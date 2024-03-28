@@ -38,7 +38,8 @@ class ConvertFloatToCategoricalTest(TestCase):
 
     def test_after_point_zero(self):
         """
-        Checks that if a number with a fractional part equal to 0 is passed, then 1 will be at position array[0][0].
+        Checks that if a number with a fractional part equal to 0 is passed, then 1 will be at
+            position array[0][0].
 
         Input number: 4.00
         Expected value:

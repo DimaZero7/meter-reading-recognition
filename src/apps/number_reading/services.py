@@ -1,14 +1,20 @@
-from typing import Union
+import uuid
+from io import BytesIO
+from typing import Tuple, Union
 
 import numpy as np
+from django.core.files.base import ContentFile
+from django.db.models.fields.files import ImageFieldFile
+from PIL import Image
 
 from apps.number_reading.exceptions import NumberIsoLongException
 
 
 def convert_float_to_categorical(number: float) -> np.ndarray:
     """
-    Function takes a number and returns its categorical representation (a 2-dimensional array of size 11x10),
-    where index column[0] denotes the position of the decimal point from the end, and indices column[1-10] denote the digits of the number.
+    Function takes a number and returns its categorical representation
+        (a 2-dimensional array of size 11x10), where index column[0] denotes the position of the
+        decimal point from the end, and indices column[1-10] denote the digits of the number.
 
     Example for the number 2.29:
     [
@@ -71,3 +77,18 @@ def convert_categorical_to_number(array: np.ndarray) -> Union[int, float]:
 
     numbers = "".join(numbers)
     return number_type(numbers)
+
+
+def image_resize(image: ImageFieldFile, width: int, height: int) -> Tuple[str, ContentFile]:
+    image = Image.open(image)
+
+    new_size = (width, height)
+    image_resized = image.resize(new_size)
+
+    image_io = BytesIO()
+    image_resized.save(image_io, format="JPEG")
+
+    image_resized_name = f"{str(uuid.uuid4())}.jpg"
+    image_resized_file = ContentFile(image_io.getvalue(), name=image_resized_name)
+
+    return image_resized_name, image_resized_file

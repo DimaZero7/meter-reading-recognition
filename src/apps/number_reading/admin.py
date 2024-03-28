@@ -14,8 +14,8 @@ class TrainingSetAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_filter = (("id", NumericRangeFilter), "type", ("correct_value", NumericRangeFilter))
 
-    fields = ("image", "correct_value", "type")
-    readonly_fields = ("type",)
+    fields = ("image", "image_resized", "correct_value", "type", "correct_value_categorical")
+    readonly_fields = ("type", "correct_value_categorical", "image_resized")
 
     def get_image(self, instance: TrainingSet):
         return mark_safe(
