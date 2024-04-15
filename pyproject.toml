@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 70
+
+[tool.isort]
+line_length = 70
+known_first_party = "apps"
+profile = "black"
