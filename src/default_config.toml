@@ -1,0 +1,20 @@
+[base]
+secret_key = "django-insecure-%hj36iymd#14dio6qylhc+mhzhf=p33_(-(*r+ll_j)@e^e9oz"
+debug = false
+domain_name = "http://127.0.0.1:8000"
+
+[database]
+name = "meter_reading_recognition"
+user = "postgres"
+password = "pass"
+host = "localhost"
+port = 5432
+
+[develop]
+development = "local"
+
+[storage]
+media_url = "/media/"
+media_root = "media/"
+static_url = "/static/"
+secure_links_secret = "insecure-mkjnhygtfdhgvjbknli"

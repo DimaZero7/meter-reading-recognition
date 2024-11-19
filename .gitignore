@@ -1,2 +1,6 @@
 .idea
 venv
+dataset
+media
+apps/data/import_training/training.csv
+apps/data/import_training/images/*

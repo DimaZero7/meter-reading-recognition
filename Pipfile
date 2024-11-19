@@ -4,6 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pandas = "==2.2.2"
+tensorflow = "==2.16.1"
+numpy = "==1.26.4"
+pillow = "==10.3.0"
+matplotlib = "==3.8.4"
+scipy = "==1.13.0"
+django = "==5.0.4"
+toml = "==0.10.2"
+django-split-settings = "==1.3.1"
+psycopg2-binary = "*"  # linux and mac
+psycopg2 = "*"  # windows
+django-cleanup = "==8.1.0"
+ImageHash = "==4.3.1"
 
 [dev-packages]
 black = "24.4.0"
